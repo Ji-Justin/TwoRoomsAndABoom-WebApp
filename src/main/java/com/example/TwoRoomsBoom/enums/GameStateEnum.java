@@ -1,0 +1,16 @@
+package com.example.TwoRoomsBoom.enums;
+
+public enum GameStateEnum {
+    GAME_WAITING_FOR_PLAYERS,
+    GAME_READY,
+    GAME_START,
+    GAME_ROUND_START,
+    GAME_TIMER_START,
+    GAME_TIMER_END,
+    GAME_VOTING_START,
+    GAME_VOTING_END,
+    GAME_HOSTAGE_EXCHANGE_START,
+    GAME_HOSTAGE_EXCHANGE_END,
+    GAME_ROUND_END,
+    GAME_END
+}
