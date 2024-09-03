@@ -22,14 +22,6 @@ public class Player {
     @Default
     private boolean isLeader = false;
     private boolean isHost;
-    
-    public void changeRoom() {
-        if (this.room == 1) {
-            this.room = 2;
-        } else {
-            this.room = 1;
-        }
-    }
 
     public void sharePublic() {
         
