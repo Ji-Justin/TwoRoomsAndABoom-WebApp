@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 
 @Getter
@@ -14,7 +16,7 @@ import java.util.Timer;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Round {
-    private List<Player> hostages;
+    private HashMap<Player> hostages;
     private Timer timer;
     private Room roomOne;
     private Room roomTwo;

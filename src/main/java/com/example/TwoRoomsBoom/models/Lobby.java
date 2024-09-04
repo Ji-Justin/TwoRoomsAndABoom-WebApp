@@ -22,4 +22,5 @@ public class Lobby {
     private Set<Player> readyPlayers;
     private Player host;
     private String settings;
+    private Game game;
 }
