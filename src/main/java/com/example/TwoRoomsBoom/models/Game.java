@@ -21,4 +21,6 @@ public class Game {
     private Timer timer;
     @Default
     private GameStateEnum GAMESTATE = GameStateEnum.GAME_WAITING_FOR_PLAYERS;
+    private Room roomOne;
+    private Room roomTwo;
 }

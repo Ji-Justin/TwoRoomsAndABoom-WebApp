@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Timer;
 
 @Getter
@@ -16,6 +17,4 @@ import java.util.Timer;
 public class Round {
     private List<Player> hostages;
     private Timer timer;
-    private Room roomOne;
-    private Room roomTwo;
 }
