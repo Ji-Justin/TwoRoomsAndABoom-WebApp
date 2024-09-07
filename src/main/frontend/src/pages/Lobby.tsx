@@ -12,6 +12,14 @@ function LobbyPage() {
             name: "test2"
         }
     ]);
+
+    const copyLink = () => {
+        console.log("TODO: Link copied to clip board")
+    }
+
+    const infoNavOpen = () => {
+        console.log("TODO: Opens the Side Nav component")
+    }
     
     const readyAction = () => {
         console.log("TODO: Send ready status for the player to the server")
@@ -25,8 +33,8 @@ function LobbyPage() {
                         XSDH
                     </div>
                     <div className="flex justify-between my-5">
-                        <button className="p-2 bg-gray-400 rounded-md">Copy Invite Link</button>
-                        <button className="p-2 h-10 w-10 rounded-full bg-gray-400">i</button>
+                        <button onClick={copyLink} className="p-2 bg-gray-400 rounded-md">Copy Invite Link</button>
+                        <button onClick={infoNavOpen} className="p-2 h-10 w-10 rounded-full bg-gray-400">i</button>
                     </div>
                 </div>
                 <div id="lobby-players-list" className="row-span-3 my-5">
