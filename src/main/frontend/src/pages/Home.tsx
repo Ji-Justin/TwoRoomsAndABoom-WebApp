@@ -18,7 +18,7 @@ function LandingPage() {
                 <div className="flex items-center justify-center justify-around text-2xl">
                     <div className="">
                         <div className="p-5">Create</div>
-                        <button className="bg-yellow-600 w-64 h-16 rounded">Create Game</button>
+                        <button onClick={_ => window.location.href="/lobby"} className="bg-yellow-600 w-64 h-16 rounded">Create Game</button>
                     </div>
                     <div>
                         <div className="p-5">Join Room</div>
