@@ -6,8 +6,8 @@ function LandingPage() {
         <div className="h-screen flex items-center justify-center">
             <div>
                 <h1 className="p-72 py-80 h-96 border-2 border-black flex items-center justify-center text-2xl"><b>Two Rooms and a Boom</b></h1><br></br>
-                <form>
-                    <label className="flex items-center justify-center text-2xl">Enter Name</label>
+                <form className="flex justify-center items-center flex-col">
+                    <label className="text-2xl">Enter Name</label>
                     <input
                         type="text"
                         required
@@ -27,7 +27,7 @@ function LandingPage() {
                             type="text"
                             className="border-2 border-black p-1 w-52 h-16"
                             maxLength={5}/>
-                            <button className="bg-yellow-400 rounded aspect-square absolute right-24 top-4">
+                            <button className="bg-yellow-400 rounded aspect-square absolute right-48 top-4">
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
                                     width="28" 
