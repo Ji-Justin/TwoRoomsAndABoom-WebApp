@@ -1,10 +1,7 @@
 package com.example.TwoRoomsBoom.models;
 
 import java.util.Set;
-
-import com.example.TwoRoomsBoom.models.role.*;
-
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +19,7 @@ import lombok.Builder.Default;
 public class Lobby {
     private String lobbyId;
     private Game game;
-    private List<Role> rolesAdded;
+    private HashMap<Role, Integer> rolesAdded;
     private List<Player> players;
     private Set<Player> readyPlayers;
     private Player host;
@@ -46,36 +43,13 @@ public class Lobby {
     }
 
     public void addRole(Role role) {
-        // Can have multiple Blue/Red team role in play but other roles cannot
-        if (role.getName().equals("Blue Team") || role.getName().equals("Red Team")) {
-            // Should be equal amount of Blue/Red team added
-            if (role.getName().equals("Blue Team")) {
-                this.rolesAdded.add(new RedTeam());
-            } else {
-                this.rolesAdded.add(new BlueTeam());
-            }
-            this.rolesAdded.add(role);
-        } else if (!this.rolesAdded.contains(role)) {
-            this.rolesAdded.add(role);
-        }
+        // Need to check that other roles besides team roles shouldn't be added more than once
+        rolesAdded.compute(role, (k, val) -> val == null ? 1 : val + 1);
     }
 
     public void removeRole(Role role) {
-        if (this.rolesAdded.size() > 0 && this.rolesAdded.contains(role)) {
-            // Removes both Blue/Red Team
-            if (role.getName().equals("Blue Team") || role.getName().equals("Red Team")) {
-                Iterator<Role> iter = rolesAdded.iterator();
-                while (iter.hasNext()) {
-                    Role r = iter.next();
-                    if ((role.getName().equals("Blue Team") && r.getName().equals("Red Team")) || 
-                        (role.getName().equals("Red Team") && r.getName().equals("Blue Team"))) {
-                        iter.remove();
-                    }
-                }
-                this.rolesAdded.remove(role);
-            } else {
-                this.rolesAdded.remove(role);
-            }
+        if (rolesAdded.get(role) != null) {
+            rolesAdded.remove(role);
         }
     }
 
