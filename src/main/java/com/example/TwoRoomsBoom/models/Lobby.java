@@ -49,7 +49,10 @@ public class Lobby {
 
     public void removeRole(Role role) {
         if (rolesAdded.get(role) != null) {
-            rolesAdded.remove(role);
+            rolesAdded.put(role, rolesAdded.get(role) - 1);
+            if (rolesAdded.get(role) == 0) {
+                rolesAdded.remove(role);
+            }
         }
     }
 
