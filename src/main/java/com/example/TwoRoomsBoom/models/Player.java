@@ -18,10 +18,6 @@ public class Player {
     private String name;
     private Role role;
     private Set<String> conditions;
-    private Integer room;
-    @Default
-    private boolean isLeader = false;
-    private boolean isHost;
 
     public void sharePublic() {
         
