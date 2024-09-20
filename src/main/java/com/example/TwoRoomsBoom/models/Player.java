@@ -17,14 +17,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Player {
     private String name;
-<<<<<<< Updated upstream
-    private Role role;
-    private Set<String> conditions;
-    private Integer room;
-    @Default
-    private boolean isLeader = false;
-    private boolean isHost;
-=======
     @Default
     private Role role = null;
     @Default
@@ -33,7 +25,6 @@ public class Player {
     public Player(String name) {
         this.name = name;
     }
->>>>>>> Stashed changes
 
     public void sharePublic() {
         

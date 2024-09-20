@@ -3,6 +3,7 @@ package com.example.TwoRoomsBoom.models;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import lombok.AllArgsConstructor;
@@ -19,13 +20,6 @@ import lombok.Builder.Default;
 @NoArgsConstructor
 public class Lobby {
     private String lobbyId;
-<<<<<<< Updated upstream
-    private List<Role> rolesAdded;
-    private List<Player> players;
-    private Set<Player> readyPlayers;
-    private Player host;
-    private String settings;
-=======
     private Player host;
     @Default
     private Game game = new Game();
@@ -97,5 +91,4 @@ public class Lobby {
     public void transferHost(Player player) {
         this.host = player;
     }
->>>>>>> Stashed changes
 }
