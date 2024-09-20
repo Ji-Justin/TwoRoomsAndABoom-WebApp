@@ -24,6 +24,7 @@ public class LobbyRepository {
         if (lobby != null) {
             Player player = new Player(name);
             lobby.addPlayers(player);
+//            System.out.println(lobby.getPlayers().toString());
             return true; // add player to lobby websocketing
         }
         throw new IllegalArgumentException();

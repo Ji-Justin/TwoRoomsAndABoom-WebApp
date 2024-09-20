@@ -1,10 +1,6 @@
 package com.example.TwoRoomsBoom.models;
 
-import java.util.Set;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,14 +24,18 @@ public class Lobby {
     @Default
     private List<Player> players = new ArrayList<>();
     @Default
-    private Set<Player> readyPlayer = new HashSet<Player>();
+    private Set<String> readyPlayers = new HashSet<String>();
     @Default
     private boolean enableBury = false;
 
     public Lobby(String uuid, Player host) {
         this.lobbyId = uuid;
-        this.game = new Game();
+        this.game = null;
         this.host = host;
+        this.rolesAdded = new HashMap<>();
+        this.players = new ArrayList<>();
+        this.readyPlayers = new HashSet<>();
+        this.enableBury = false;
     }
 
     public void startGame() {
@@ -43,41 +43,40 @@ public class Lobby {
     }
 
     public void addPlayers(Player player) {
-        if (!this.players.contains(player)) {
-            this.players.add(player);
+        /* TODO: Possibly return boolean to indicate whether a player was added? */
+
+        for (Player player1: this.players) {
+            if(player1.getName().equals(player.getName())) {
+                return;
+            }
         }
+        this.players.add(player);
     }
 
-    public void kickPlayer(Player player) {
-        if (this.players.contains(player)) {
-            this.players.remove(player);
-        }
+    public void kickPlayer(String playerName) {
+        this.players.removeIf(player -> player.getName().equals(playerName));
     }
 
     public void addRole(Role role) {
         // Need to check that other roles besides team roles shouldn't be added more than once
-        rolesAdded.compute(role, (k, val) -> val == null ? 1 : val + 1);
+        this.rolesAdded.compute(role, (k, val) -> val == null ? 1 : val + 1);
     }
 
     public void removeRole(Role role) {
-        if (rolesAdded.get(role) != null) {
-            rolesAdded.put(role, rolesAdded.get(role) - 1);
-            if (rolesAdded.get(role) == 0) {
-                rolesAdded.remove(role);
+        if (this.rolesAdded.get(role) != null) {
+            this.rolesAdded.put(role, this.rolesAdded.get(role) - 1);
+            if (this.rolesAdded.get(role) == 0) {
+                this.rolesAdded.remove(role);
             }
         }
     }
 
-    public void addReadyPlayer(Player player) {
-        if (!this.readyPlayers.contains(player)) {
-            this.readyPlayers.add(player);
-        }
+    public void addReadyPlayer(String player) {
+        this.readyPlayers.add(player);
     }
 
-    public void removeReadyPlayer(Player player) {
-        if (this.readyPlayers.contains(player)) {
-            this.readyPlayers.remove(player);
-        }
+    public void removeReadyPlayer(String player) {
+        this.readyPlayers.remove(player);
     }
     
     public void toggleBury() {

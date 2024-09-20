@@ -31,21 +31,19 @@ public class GameController {
         return new CreateLobbyResponse(id, 200);
     }
     
-    @PutMapping("join/{gameid}")
-    public JoinLobbyResponse joinLobby(@PathVariable String id, @RequestBody String name) {
+    @PutMapping("join/{lobbyId}")
+    public JoinLobbyResponse joinLobby(@PathVariable String lobbyId, @RequestBody String name) {
         /*TODO: check for lobby id in data structure
                 if found add player to lobby
                   redirect to lobby
                 else return error 
                   lobby cannot be found
         */
-        Boolean isJoin = lobbyService.joinLobby(id, name);
+        Boolean isJoin = lobbyService.joinLobby(lobbyId, name);
         if (isJoin) {
           return new JoinLobbyResponse(isJoin, 200);
         } else {
           throw new HttpServerErrorException(HttpStatus.NOT_FOUND, "Lobby not found");
         }
     }
-    
-    
 }
