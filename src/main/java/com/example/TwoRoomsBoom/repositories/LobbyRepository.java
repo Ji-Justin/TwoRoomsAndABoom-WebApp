@@ -16,17 +16,18 @@ public class LobbyRepository {
         Player host = new Player(hostName);
         Lobby lobby = new Lobby(id, host);
         lobbies.put(id, lobby);
-        this.addPlayerToLobby(id, hostName);
+        this.addPlayerToLobby(id, host);
     }
 
-    public boolean addPlayerToLobby(String id, String name) throws IllegalArgumentException {
+    public boolean addPlayerToLobby(String id, Player player) throws IllegalArgumentException {
         Lobby lobby = lobbies.get(id);
         if (lobby != null) {
-            Player player = new Player(name);
             lobby.addPlayers(player);
 //            System.out.println(lobby.getPlayers().toString());
             return true; // add player to lobby websocketing
         }
         throw new IllegalArgumentException();
     }
+
+    public void settingHostSessionId
 }

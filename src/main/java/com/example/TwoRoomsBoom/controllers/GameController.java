@@ -22,6 +22,9 @@ public class GameController {
     @Autowired
     private LobbyService lobbyService;
 
+    /*TODO: refactor rest controller
+       to not create player object
+     */
     @PostMapping("/create")
     public CreateLobbyResponse createLobby(@RequestBody CreateLobbyRequest request) {
         /*TODO: create lobby w/ unique id

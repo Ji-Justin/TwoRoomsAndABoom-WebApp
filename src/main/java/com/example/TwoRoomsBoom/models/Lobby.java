@@ -16,7 +16,6 @@ import lombok.Builder.Default;
 @NoArgsConstructor
 public class Lobby {
     private String lobbyId;
-    private Player host;
     @Default
     private Game game = new Game();
     @Default
@@ -31,7 +30,6 @@ public class Lobby {
     public Lobby(String uuid, Player host) {
         this.lobbyId = uuid;
         this.game = null;
-        this.host = host;
         this.rolesAdded = new HashMap<>();
         this.players = new ArrayList<>();
         this.readyPlayers = new HashSet<>();
@@ -87,7 +85,18 @@ public class Lobby {
         }
     }
 
-    public void transferHost(Player player) {
-        this.host = player;
+    public boolean onConnectionCreate(Player player) {
+        if (player.isConnected()) {
+            if (players.size() == 0) {
+                player.makeHost();
+            }
+            addPlayers(player);
+            // TODO: add logic to send to other users when another player is connected
+            return true;
+        }
+        return false;
     }
+//    public void transferHost(Player player) {
+//        this.host = player;
+//    }
 }
