@@ -27,7 +27,7 @@ public class Lobby {
     @Default
     private boolean enableBury = false;
 
-    public Lobby(String uuid, Player host) {
+    public Lobby(String uuid) {
         this.lobbyId = uuid;
         this.game = null;
         this.rolesAdded = new HashMap<>();
@@ -87,16 +87,13 @@ public class Lobby {
 
     public boolean onConnectionCreate(Player player) {
         if (player.isConnected()) {
-            if (players.size() == 0) {
+            if (players.isEmpty()) {
                 player.makeHost();
             }
-            addPlayers(player);
+            this.addPlayers(player);
             // TODO: add logic to send to other users when another player is connected
             return true;
         }
         return false;
     }
-//    public void transferHost(Player player) {
-//        this.host = player;
-//    }
 }

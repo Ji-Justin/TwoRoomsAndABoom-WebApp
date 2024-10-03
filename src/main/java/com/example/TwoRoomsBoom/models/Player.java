@@ -28,7 +28,8 @@ public class Player {
     @Default
     private boolean host = false;
 
-    public Player(String sessionId, String name) {
+    public Player(WebSocketSession session, String sessionId, String name) {
+        this.session = session;
         this.sessionId = sessionId;
         this.name = name;
     }

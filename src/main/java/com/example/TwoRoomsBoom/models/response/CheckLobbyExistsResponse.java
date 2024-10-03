@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class JoinLobbyResponse {
+public class CheckLobbyExistsResponse {
     private Boolean isJoin;
     private int status;
 }

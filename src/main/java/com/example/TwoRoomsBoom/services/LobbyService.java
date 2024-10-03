@@ -12,18 +12,14 @@ public class LobbyService {
     @Autowired
     private LobbyRepository lobbyRepository;
 
-    public String createLobby(String hostName) {
+    public String createLobby() {
         String uuid = UUID.randomUUID().toString();
-        lobbyRepository.createLobby(uuid, hostName);
+        lobbyRepository.createLobby(uuid);
         // add scheduler
         return uuid;
     }
 
-    public boolean joinLobby(String id, String name) {
-        try {
-            return lobbyRepository.addPlayerToLobby(id, name);
-        } catch(IllegalArgumentException er) {
-            return false;
-        }
+    public boolean checkLobbyExists(String id) {
+        return lobbyRepository.doesExist(id);
     }
 }
