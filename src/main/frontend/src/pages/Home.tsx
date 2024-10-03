@@ -1,6 +1,22 @@
 import React from "react";
 
 function LandingPage() {
+    const createLobby = () => {
+        fetch("http://localhost:8080/create", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({name:"Joe"})})
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+//                     window.location.href="/lobby"
+                }
+            }
+        ).then(data => {
+            console.log(data)}).catch((error: any) => {
+            console.log(error)})
+    }
+
     return (
     <section id="landing">
         <div className="h-screen flex items-center justify-center">
@@ -18,7 +34,7 @@ function LandingPage() {
                 <div className="flex items-center justify-center justify-around text-2xl">
                     <div className="">
                         <div className="p-5">Create</div>
-                        <button onClick={_ => window.location.href="/lobby"} className="bg-yellow-600 w-64 h-16 rounded">Create Game</button>
+                        <button onClick={_ => createLobby()} className="bg-yellow-600 w-64 h-16 rounded">Create Game</button>
                     </div>
                     <div>
                         <div className="p-5">Join Room</div>
