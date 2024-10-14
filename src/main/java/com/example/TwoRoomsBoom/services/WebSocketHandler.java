@@ -4,6 +4,7 @@ import com.example.TwoRoomsBoom.repositories.ConnectionProvider;
 import com.example.TwoRoomsBoom.repositories.LobbyRepository;
 import com.example.TwoRoomsBoom.repositories.UrlParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -11,6 +12,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.util.Map;
 import java.util.Optional;
 
+@Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
     @Autowired
@@ -30,6 +32,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             String lobbyid = Optional.ofNullable(uriQuery.get("lobbyid")).orElseThrow(IllegalArgumentException::new);
             String playername = Optional.ofNullable(uriQuery.get("name")).orElseThrow(IllegalArgumentException::new);
             // Add connection to collection
+            System.out.println("Here");
             connectionProvider.addConnection(session, lobbyid, playername, lobbyRepository::addPlayerToLobby);
 
         } catch (UnsupportedOperationException e) {
