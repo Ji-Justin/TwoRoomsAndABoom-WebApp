@@ -1,4 +1,4 @@
-package com.example.TwoRoomsBoom.models;
+package com.example.TwoRoomsBoom.models.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,15 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Room {
-    private List<Player> players;
-    private Player leader;
-    private Chat chatBox;
+public class CheckLobbyExistsResponse {
+    private Boolean isJoin;
+    private int status;
 }

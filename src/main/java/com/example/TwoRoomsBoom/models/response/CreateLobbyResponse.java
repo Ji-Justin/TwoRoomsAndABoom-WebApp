@@ -1,19 +1,17 @@
-package com.example.TwoRoomsBoom.models;
-
-import java.util.Set;
-import java.util.List;
+package com.example.TwoRoomsBoom.models.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Builder.Default;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Room {
+public class CreateLobbyResponse {
+    private String lobbyid;
+    private int status;
 }

@@ -1,13 +1,15 @@
 package com.example.TwoRoomsBoom.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Builder.Default;
+import org.springframework.web.socket.WebSocketSession;
 
 @Getter
 @Setter
@@ -16,12 +18,25 @@ import lombok.Builder.Default;
 @NoArgsConstructor
 public class Player {
     private String name;
-    private Role role;
-    private Set<String> conditions;
-    private Integer room;
     @Default
-    private boolean isLeader = false;
-    private boolean isHost;
+    private Role role = null;
+    @Default
+    private Set<String> conditions = new HashSet<>();
+    @Default
+    private String sessionId = "";
+    private WebSocketSession session;
+    @Default
+    private boolean host = false;
+
+    public Player(WebSocketSession session, String sessionId, String name) {
+        this.session = session;
+        this.sessionId = sessionId;
+        this.name = name;
+    }
+
+    public Player(String name) {
+        this.name = name;
+    }
 
     public void sharePublic() {
         
@@ -41,5 +56,13 @@ public class Player {
 
     public void usurp() {
         
+    }
+
+    public void makeHost() {
+        this.host = true;
+    }
+
+    public boolean isConnected() {
+        return this.session != null && this.session.isOpen();
     }
 }
