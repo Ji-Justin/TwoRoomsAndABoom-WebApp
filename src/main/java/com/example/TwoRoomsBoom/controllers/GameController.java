@@ -22,6 +22,7 @@ public class GameController {
        to not create player object
      */
     @PostMapping("/create")
+    @CrossOrigin(origins = "http://localhost:3000")
     public CreateLobbyResponse createLobby(@RequestBody CreateLobbyRequest request) {
         /*TODO: create lobby w/ unique id
                 store lobby in data structure
