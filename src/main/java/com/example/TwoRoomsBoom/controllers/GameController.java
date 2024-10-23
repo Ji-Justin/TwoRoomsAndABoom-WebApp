@@ -10,9 +10,6 @@ import com.example.TwoRoomsBoom.models.request.CreateLobbyRequest;
 import com.example.TwoRoomsBoom.models.response.CreateLobbyResponse;
 import com.example.TwoRoomsBoom.services.LobbyService;
 
-
-
-
 @RestController
 public class GameController {
     @Autowired
@@ -32,6 +29,7 @@ public class GameController {
     }
     
     @GetMapping("check/{lobbyId}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public CheckLobbyExistsResponse checkLobby(@PathVariable String lobbyId) {
         /*TODO: check for lobby id in data structure
                 if found add player to lobby

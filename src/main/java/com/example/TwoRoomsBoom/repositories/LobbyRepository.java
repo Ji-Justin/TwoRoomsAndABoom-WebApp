@@ -20,8 +20,7 @@ public class LobbyRepository {
     public boolean addPlayerToLobby(String id, Player player) throws IllegalArgumentException {
         Lobby lobby = lobbies.get(id);
         if (lobby != null) {
-            lobby.addPlayers(player);
-            return true; // add player to lobby websocketing
+            return lobby.onConnectionCreate(player);// adds player to lobby websocketing
         }
         throw new IllegalArgumentException();
     }

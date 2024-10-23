@@ -1,26 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
 function LandingPage() {
+    const [inputCode, setCode] = useState("");
+    const [inputName, setName] = useState("");
+    
     const createLobby = () => {
         fetch("http://localhost:8080/create", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: "Joe" }),
+            body: JSON.stringify({ inputName }),
         })
             .then((response) => {
                 if (response.ok) {
-                    return response.json();                    
+                    return response.json();
                 }
             })
             .then((data) => {
-                localStorage.setItem("player_name", "Joe");
-                window.location.href=`/lobby/${data.lobbyid}`
-                console.log(data);
+                localStorage.setItem("player_name", inputName);
+                window.location.href = `/lobby/${data.lobbyid}`;
             })
             .catch((error: any) => {
                 console.log(error);
             });
     };
+
+    const joinLobby = () => {
+        fetch(`http://localhost:8080/check/${inputCode}`, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json'},
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then((data) => {
+                if (data) {
+                    localStorage.setItem("player_name", inputName);
+                    console.log(data);
+                    window.location.href = `/lobby/${inputCode}`;
+                }
+            })
+            .catch((error: any) => {
+                console.log(error);
+            });
+    };
+
+
 
     return (
         <section id="landing">
@@ -36,6 +62,8 @@ function LandingPage() {
                             type="text"
                             required
                             className="border-2 border-black p-1 text-2xl"
+                            value={inputName}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </form>
                     <br></br>
@@ -56,8 +84,13 @@ function LandingPage() {
                                     type="text"
                                     className="border-2 border-black p-1 w-52 h-16"
                                     maxLength={5}
+                                    value={inputCode}
+                                    onChange={(e) => setCode(e.target.value)}
                                 />
-                                <button className="bg-yellow-400 rounded aspect-square absolute right-48 top-4">
+                                <button
+                                    onClick={() => joinLobby()}
+                                    className="bg-yellow-400 rounded aspect-square absolute right-48 top-4"
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="28"
@@ -65,9 +98,9 @@ function LandingPage() {
                                         viewBox="0 0 24 24"
                                         fill="none"
                                         stroke="#000000"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     >
                                         <path d="M9 18l6-6-6-6" />
                                     </svg>

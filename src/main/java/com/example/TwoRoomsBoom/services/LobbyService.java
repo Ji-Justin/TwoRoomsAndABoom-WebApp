@@ -1,7 +1,6 @@
 package com.example.TwoRoomsBoom.services;
 
-import java.util.UUID;
-
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,11 @@ public class LobbyService {
     private LobbyRepository lobbyRepository;
 
     public String createLobby() {
-        String uuid = UUID.randomUUID().toString();
-        lobbyRepository.createLobby(uuid);
+        // String uuid = UUID.randomUUID().toString();
+        String code = RandomStringUtils.randomAlphanumeric(5);
+        lobbyRepository.createLobby(code);
         // add scheduler
-        return uuid;
+        return code;
     }
 
     public boolean checkLobbyExists(String id) {

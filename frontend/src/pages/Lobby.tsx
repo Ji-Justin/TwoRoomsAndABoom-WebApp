@@ -36,6 +36,7 @@ function LobbyPage() {
             setWs(connect(lobbyid, name));
         }
     }, [lobbyid]);
+    
     return (
         <section id="lobby">
             <div

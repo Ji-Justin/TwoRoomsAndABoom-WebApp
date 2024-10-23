@@ -32,9 +32,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             String lobbyid = Optional.ofNullable(uriQuery.get("lobbyid")).orElseThrow(IllegalArgumentException::new);
             String playername = Optional.ofNullable(uriQuery.get("name")).orElseThrow(IllegalArgumentException::new);
             // Add connection to collection
-            System.out.println("Here");
             connectionProvider.addConnection(session, lobbyid, playername, lobbyRepository::addPlayerToLobby);
-
         } catch (UnsupportedOperationException e) {
             session.close(CloseStatus.BAD_DATA);
         } catch (IllegalArgumentException e) {
